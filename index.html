@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A modern responsive to-do list app for organizing daily tasks." />
+  <title>DayList — Modern To-Do App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell" aria-labelledby="app-title">
+    <section class="hero-card">
+      <div>
+        <p class="eyebrow">Plan your day</p>
+        <h1 id="app-title">DayList</h1>
+        <p class="hero-copy">A simple, focused task manager for students, professionals, and busy days.</p>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">
+        <span class="theme-icon" aria-hidden="true">☾</span>
+        <span id="themeLabel">Dark</span>
+      </button>
+    </section>
+
+    <section class="task-card" aria-label="Task manager">
+      <form class="task-form" id="taskForm" autocomplete="off">
+        <label class="sr-only" for="taskInput">Task name</label>
+        <input id="taskInput" name="taskInput" type="text" maxlength="120" placeholder="Add a task, e.g. Review lecture notes" required />
+        <button class="primary-button" type="submit" id="submitButton">Add task</button>
+      </form>
+
+      <div class="toolbar">
+        <label class="search-field" for="searchInput">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search tasks" />
+        </label>
+        <div class="filters" role="group" aria-label="Filter tasks">
+          <button class="filter-button active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="active">Active</button>
+          <button class="filter-button" type="button" data-filter="completed">Done</button>
+        </div>
+      </div>
+
+      <div class="status-row" aria-live="polite">
+        <span id="remainingCount">0 tasks remaining</span>
+        <button class="text-button" type="button" id="clearCompleted">Clear completed</button>
+      </div>
+
+      <ul class="task-list" id="taskList" aria-label="Tasks"></ul>
+
+      <div class="empty-state" id="emptyState">
+        <div aria-hidden="true">✦</div>
+        <h2>No tasks yet</h2>
+        <p>Add your first task to start organizing your day.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
