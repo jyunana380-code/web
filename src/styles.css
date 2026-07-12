@@ -1,0 +1,140 @@
+:root {
+  color-scheme: light;
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --text: #172033;
+  --muted: #687082;
+  --accent: #5b6ee1;
+  --accent-dark: #4356c8;
+  --accent-soft: #eef1ff;
+  --success: #18a67a;
+  --danger: #dc4c64;
+  --warning: #f59f00;
+  --border: #e3e8f1;
+  --shadow: 0 24px 70px rgba(32, 45, 78, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(91, 110, 225, 0.18), transparent 32rem),
+    radial-gradient(circle at bottom right, rgba(24, 166, 122, 0.14), transparent 28rem),
+    var(--bg);
+  color: var(--text);
+}
+
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: 0.45; }
+
+.app-shell {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.hero-card, .task-card {
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.hero-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem 1rem;
+  align-items: end;
+  padding: 2.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.eyebrow {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1, h2, p { margin-top: 0; }
+h1 { margin: 0; font-size: clamp(2.6rem, 7vw, 5.25rem); line-height: 0.95; }
+.hero-copy { max-width: 38rem; margin: 0; color: var(--muted); font-size: 1.05rem; }
+.today-pill { justify-self: end; margin: 0; padding: 0.8rem 1rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent-dark); font-weight: 800; }
+
+.task-card { padding: 1.25rem; }
+.task-form, .toolbar, .status-row, .task-item { display: flex; gap: 0.8rem; }
+.task-form, .toolbar { align-items: end; flex-wrap: wrap; margin-bottom: 1rem; }
+
+.field { display: grid; gap: 0.35rem; color: var(--muted); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.02em; }
+.task-title-field, .search-field { flex: 1 1 18rem; }
+.compact-field { flex: 0 1 10rem; }
+.filter-field { flex: 0 1 9rem; }
+
+input, select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--card);
+  color: var(--text);
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+input { padding: 0.95rem 1rem; }
+select { padding: 0.95rem 0.85rem; }
+input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+
+.primary-button, .text-button, .icon-button, .task-checkbox {
+  border: 0;
+  border-radius: 999px;
+  transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+.primary-button:hover, .text-button:hover, .icon-button:hover { transform: translateY(-1px); }
+.primary-button { flex: 0 0 auto; padding: 1rem 1.25rem; background: var(--accent); color: #fff; font-weight: 850; }
+.primary-button:hover { background: var(--accent-dark); }
+
+.status-row { align-items: center; justify-content: space-between; margin-bottom: 0.8rem; color: var(--muted); }
+.text-button { padding: 0.55rem 0.8rem; background: var(--accent-soft); color: var(--accent-dark); font-weight: 800; }
+
+.task-list { display: grid; gap: 0.7rem; margin: 0; padding: 0; list-style: none; }
+.task-item { align-items: center; padding: 0.9rem; border: 1px solid var(--border); border-radius: 1.3rem; background: var(--card); animation: slideIn 220ms ease both; }
+.task-checkbox { display: grid; flex: 0 0 1.65rem; width: 1.65rem; height: 1.65rem; place-items: center; border: 2px solid var(--border); background: transparent; color: white; font-weight: 900; }
+.task-item.completed .task-checkbox { border-color: var(--success); background: var(--success); }
+.task-content { flex: 1; min-width: 0; }
+.task-text { display: block; overflow-wrap: anywhere; font-weight: 750; }
+.task-item.completed .task-text { color: var(--muted); text-decoration: line-through; }
+.task-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.45rem; color: var(--muted); font-size: 0.82rem; }
+.task-meta span { padding: 0.25rem 0.55rem; border-radius: 999px; background: #f3f5f9; }
+.priority-high { color: var(--danger) !important; }
+.priority-medium { color: var(--warning) !important; }
+.priority-low { color: var(--success) !important; }
+.task-actions { display: flex; gap: 0.4rem; }
+.icon-button { padding: 0.62rem 0.8rem; background: #f3f5f9; color: var(--muted); font-weight: 800; }
+.icon-button.delete:hover { color: var(--danger); }
+.edit-input { padding: 0.72rem 0.8rem; }
+
+.empty-state { padding: 2.7rem 1rem; color: var(--muted); text-align: center; }
+.empty-state div { margin-bottom: 0.7rem; color: var(--accent); font-size: 2rem; }
+.empty-state h2 { margin-bottom: 0.35rem; color: var(--text); }
+
+@keyframes slideIn { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+@media (max-width: 760px) {
+  .app-shell { width: min(100% - 1rem, 1120px); padding: 0.5rem 0; }
+  .hero-card, .task-card { border-radius: 1.4rem; }
+  .hero-card { grid-template-columns: 1fr; padding: 1.35rem; }
+  .today-pill { justify-self: start; }
+  .task-form, .toolbar, .status-row, .task-item { align-items: stretch; flex-direction: column; }
+  .compact-field, .filter-field, .primary-button { flex: 1 1 auto; width: 100%; }
+  .task-item { gap: 0.7rem; }
+  .task-checkbox { align-self: flex-start; }
+  .task-actions { display: grid; grid-template-columns: 1fr 1fr; }
+}
